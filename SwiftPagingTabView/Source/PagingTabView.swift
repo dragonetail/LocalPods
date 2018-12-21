@@ -149,6 +149,8 @@ open class PagingTabView: BaseViewWithAutolayout {
 
     open override func layoutSubviews() {
         super.layoutSubviews()
+        //目前子窗口的宽度、或者MapView对象的原因，在屏幕旋转的过程会导致Autolayout底层发出Assert警告
+        //暂时看对画面布局没有影响
     }
 
     // MARK: - Public Methods -
