@@ -1,0 +1,16 @@
+platform :ios, '8.4'
+
+target 'SwipeSelectingExample' do
+  use_frameworks!
+  
+  pod 'SwipeSelectingCollectionView', :path => '../'
+  
+  target 'SwipeSelectingExampleTests' do
+    inherit! :search_paths
+  end
+
+  target 'SwipeSelectingExampleUITests' do
+    inherit! :search_paths
+  end
+
+end

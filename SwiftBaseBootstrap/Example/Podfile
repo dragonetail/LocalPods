@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SwiftBaseBootstrap_Example' do
+  pod 'SwiftBaseBootstrap', :path => '../'
+
+  target 'SwiftBaseBootstrap_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

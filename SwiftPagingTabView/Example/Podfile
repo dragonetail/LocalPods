@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SwiftPagingTabView_Example' do
+  pod 'SwiftPagingTabView', :path => '../'
+
+  target 'SwiftPagingTabView_Tests' do
+    inherit! :search_paths
+    
+    
+  end
+end

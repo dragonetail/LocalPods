@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MediaBrowserDelegate Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/MediaBrowserDelegate" class="dashAnchor"></a>
+    <a title="MediaBrowserDelegate Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">MediaBrowser Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">MediaBrowser Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        MediaBrowserDelegate Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Media.html">Media</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MediaBrowser.html">MediaBrowser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MediaCaptionView.html">MediaCaptionView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/UIImage.html">UIImage</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/MediaBrowserDelegate.html">MediaBrowserDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>MediaBrowserDelegate</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">MediaBrowserDelegate</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+
+                </div>
+              </div>
+            <p>Required delegate to use MediaBrowser</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Required%20methods"></a>
+                <a name="//apple_ref/swift/Section/Required methods" class="dashAnchor"></a>
+                <a href="#/Required%20methods">
+                  <h3 class="section-name">Required methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12MediaBrowser20MediaBrowserDelegate13numberOfMediaFT2inCS_12MediaBrowser_Si"></a>
+                    <a name="//apple_ref/swift/Method/numberOfMedia(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12MediaBrowser20MediaBrowserDelegate13numberOfMediaFT2inCS_12MediaBrowser_Si">numberOfMedia(in:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Required protocol to use MediaBrowser. return media count</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">numberOfMedia</span><span class="p">(</span><span class="k">in</span> <span class="nv">mediaBrowser</span><span class="p">:</span> <span class="kt"><a href="../Classes/MediaBrowser.html">MediaBrowser</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mediaBrowser</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>MediaBrowser</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12MediaBrowser20MediaBrowserDelegate5mediaFT3forCS_12MediaBrowser2atSi_CS_5Media"></a>
+                    <a name="//apple_ref/swift/Method/media(for:at:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12MediaBrowser20MediaBrowserDelegate5mediaFT3forCS_12MediaBrowser2atSi_CS_5Media">media(for:at:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Required protocol to use MediaBrowser. return media</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">media</span><span class="p">(</span><span class="k">for</span> <span class="nv">mediaBrowser</span><span class="p">:</span> <span class="kt"><a href="../Classes/MediaBrowser.html">MediaBrowser</a></span><span class="p">,</span> <span class="n">at</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Media.html">Media</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mediaBrowser</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>MediaBrowser</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Int</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Optional%20methods"></a>
+                <a name="//apple_ref/swift/Section/Optional methods" class="dashAnchor"></a>
+                <a href="#/Optional%20methods">
+                  <h3 class="section-name">Optional methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12MediaBrowser20MediaBrowserDelegate38mediaBrowserDidFinishModalPresentationFT12mediaBrowserCS_12MediaBrowser_T_"></a>
+                    <a name="//apple_ref/swift/Method/mediaBrowserDidFinishModalPresentation(mediaBrowser:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12MediaBrowser20MediaBrowserDelegate38mediaBrowserDidFinishModalPresentationFT12mediaBrowserCS_12MediaBrowser_T_">mediaBrowserDidFinishModalPresentation(mediaBrowser:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Optional protocol to mediaBrowser Did Finish Modal Presentation</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">mediaBrowserDidFinishModalPresentation</span><span class="p">(</span><span class="nv">mediaBrowser</span><span class="p">:</span> <span class="kt"><a href="../Classes/MediaBrowser.html">MediaBrowser</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mediaBrowser</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>MediaBrowser</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12MediaBrowser20MediaBrowserDelegate9thumbnailFT3forCS_12MediaBrowser2atSi_CS_5Media"></a>
+                    <a name="//apple_ref/swift/Method/thumbnail(for:at:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12MediaBrowser20MediaBrowserDelegate9thumbnailFT3forCS_12MediaBrowser2atSi_CS_5Media">thumbnail(for:at:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Optional protocol to show thumbnail. return media.
+Recommand small size</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">thumbnail</span><span class="p">(</span><span class="k">for</span> <span class="nv">mediaBrowser</span><span class="p">:</span> <span class="kt"><a href="../Classes/MediaBrowser.html">MediaBrowser</a></span><span class="p">,</span> <span class="n">at</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Media.html">Media</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mediaBrowser</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>MediaBrowser</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Int</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12MediaBrowser20MediaBrowserDelegate11captionViewFT3forCS_12MediaBrowser2atSi_GSqCS_16MediaCaptionView_"></a>
+                    <a name="//apple_ref/swift/Method/captionView(for:at:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12MediaBrowser20MediaBrowserDelegate11captionViewFT3forCS_12MediaBrowser2atSi_GSqCS_16MediaCaptionView_">captionView(for:at:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Optional protocol to show captionView. return MediaCaptionView.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">captionView</span><span class="p">(</span><span class="k">for</span> <span class="nv">mediaBrowser</span><span class="p">:</span> <span class="kt"><a href="../Classes/MediaBrowser.html">MediaBrowser</a></span><span class="p">,</span> <span class="n">at</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/MediaCaptionView.html">MediaCaptionView</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mediaBrowser</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>MediaBrowser</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Int</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12MediaBrowser20MediaBrowserDelegate15didDisplayMediaFT2atSi2inCS_12MediaBrowser_T_"></a>
+                    <a name="//apple_ref/swift/Method/didDisplayMedia(at:in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12MediaBrowser20MediaBrowserDelegate15didDisplayMediaFT2atSi2inCS_12MediaBrowser_T_">didDisplayMedia(at:in:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Optional protocol when need callback</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">didDisplayMedia</span><span class="p">(</span><span class="n">at</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="k">in</span> <span class="nv">mediaBrowser</span><span class="p">:</span> <span class="kt"><a href="../Classes/MediaBrowser.html">MediaBrowser</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Int</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mediaBrowser</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>MediaBrowser</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12MediaBrowser20MediaBrowserDelegate19actionButtonPressedFT2atSi2inCS_12MediaBrowser_T_"></a>
+                    <a name="//apple_ref/swift/Method/actionButtonPressed(at:in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12MediaBrowser20MediaBrowserDelegate19actionButtonPressedFT2atSi2inCS_12MediaBrowser_T_">actionButtonPressed(at:in:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Optional protocol when need callback about action button</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">actionButtonPressed</span><span class="p">(</span><span class="n">at</span> <span class="nv">photoIndex</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="k">in</span> <span class="nv">mediaBrowser</span><span class="p">:</span> <span class="kt"><a href="../Classes/MediaBrowser.html">MediaBrowser</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>photoIndex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Int</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mediaBrowser</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>MediaBrowser</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12MediaBrowser20MediaBrowserDelegate15isMediaSelectedFT2atSi2inCS_12MediaBrowser_Sb"></a>
+                    <a name="//apple_ref/swift/Method/isMediaSelected(at:in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12MediaBrowser20MediaBrowserDelegate15isMediaSelectedFT2atSi2inCS_12MediaBrowser_Sb">isMediaSelected(at:in:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Optional protocol when need callback about isMediaSelected</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">isMediaSelected</span><span class="p">(</span><span class="n">at</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="k">in</span> <span class="nv">mediaBrowser</span><span class="p">:</span> <span class="kt"><a href="../Classes/MediaBrowser.html">MediaBrowser</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Int</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mediaBrowser</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>MediaBrowser</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12MediaBrowser20MediaBrowserDelegate8mediaDidFT8selectedSb2atSi2inCS_12MediaBrowser_T_"></a>
+                    <a name="//apple_ref/swift/Method/mediaDid(selected:at:in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12MediaBrowser20MediaBrowserDelegate8mediaDidFT8selectedSb2atSi2inCS_12MediaBrowser_T_">mediaDid(selected:at:in:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Optional protocol when need callback about media selection</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">mediaDid</span><span class="p">(</span><span class="nv">selected</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">at</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="k">in</span> <span class="nv">mediaBrowser</span><span class="p">:</span> <span class="kt"><a href="../Classes/MediaBrowser.html">MediaBrowser</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>selected</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Bool</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Int</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mediaBrowser</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>MediaBrowser</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP12MediaBrowser20MediaBrowserDelegate5titleFT3forCS_12MediaBrowser2atSi_SS"></a>
+                    <a name="//apple_ref/swift/Method/title(for:at:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP12MediaBrowser20MediaBrowserDelegate5titleFT3forCS_12MediaBrowser2atSi_SS">title(for:at:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Optional protocol for title</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">title</span><span class="p">(</span><span class="k">for</span> <span class="nv">mediaBrowser</span><span class="p">:</span> <span class="kt"><a href="../Classes/MediaBrowser.html">MediaBrowser</a></span><span class="p">,</span> <span class="n">at</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mediaBrowser</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>MediaBrowser</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Int</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="https://github.com/younatics/MediaBrowser" target="_blank" rel="external">Seungyoun Yi</a>. All rights reserved. (Last updated: 2017-09-10)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

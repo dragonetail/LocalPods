@@ -1,0 +1,6 @@
+.DS_Store
+/.build
+/Packages
+Example/Pods/
+Example/SwipeSelectingExample\.xcworkspace/
+Example/Podfile\.lock
