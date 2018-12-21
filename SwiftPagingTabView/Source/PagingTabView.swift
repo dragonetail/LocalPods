@@ -64,6 +64,8 @@ open class PagingTabView: BaseViewWithAutolayout {
         scrollView.delegate = self
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
+        
+        //scrollView.contentInsetAdjustmentBehavior = .never
 
         self.addSubview(scrollView)
         return scrollView

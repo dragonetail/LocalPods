@@ -103,8 +103,7 @@ open class BaseViewControllerWithAutolayout: UIViewController {
                 self.view.superview?.autoPrintConstraints()
                 print("")
             }
-
-            print("\(self.accessibilityIdentifier) viewDidLayoutSubviews")
+            print("^^^ \(self.accessibilityIdentifier) viewDidLayoutSubviews")
         }
     #endif
 
