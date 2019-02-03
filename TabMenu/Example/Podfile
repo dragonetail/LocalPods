@@ -1,0 +1,11 @@
+
+use_frameworks!
+
+
+target 'TabMenu_Example' do
+  pod 'TabMenu', :path => '../'
+
+  pod 'SwiftBaseBootstrap', :path => '../../SwiftBaseBootstrap/'
+  pod 'PureLayout', :path => '../../PureLayout/'
+
+end
