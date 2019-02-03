@@ -120,15 +120,15 @@ extension LockCenter {
     /// Default: UIColor(r: 255, g: 255, b: 255)
     public static var backgroundColor = UIColor(r: 255, g: 255, b: 255)
     
-    /// 外环线条颜色：默认
+    /// 外环线条颜色: 默认
     /// Default: UIColor(r: 173, g: 216, b: 230)
     public static var lineNormalColor = UIColor(r: 173, g: 216, b: 230)
     
-    /// 外环线条颜色：选中
+    /// 外环线条颜色: 选中
     /// Default: UIColor(r: 0, g: 191, b: 255)
     public static var lineHighlightColor = UIColor(r: 0, g: 191, b: 255)
     
-    /// 外环线条颜色：错误
+    /// 外环线条颜色: 错误
     /// Default: warningTitleColor
     public static var lineWarnColor = warningTitleColor
 

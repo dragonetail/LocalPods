@@ -9,22 +9,32 @@
 import UIKit
 
 open class BaseViewWithAutolayout: UIView {
+
+    #if DEBUG
+        var debugOutputEnable = true
+        fileprivate func log(_ msg: String) {
+            if debugOutputEnable {
+                print(msg)
+            }
+        }
+    #endif
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        _ = self.autoLayout("BaseView")
+        self.autoLayout("BaseView")
         #if DEBUG
-            print("--- \(self.accessibilityIdentifier ?? "") init")
+            log("--- \(self.accessibilityIdentifier ?? "") init")
         #endif
 
         #if DEBUG
-            print("... \(self.accessibilityIdentifier ?? "") init: setupAndComposeView")
+            log("... \(self.accessibilityIdentifier ?? "") init: setupAndComposeView")
         #endif
         setupAndComposeView()
 
         // bootstrap Auto Layout
         self.setNeedsUpdateConstraints()
         #if DEBUG
-            print("^^^ \(self.accessibilityIdentifier ?? "") init")
+            log("^^^ \(self.accessibilityIdentifier ?? "") init")
         #endif
     }
 
@@ -35,23 +45,23 @@ open class BaseViewWithAutolayout: UIView {
     fileprivate var didSetupConstraints = false
     open override func updateConstraints() {
         #if DEBUG
-            print("--- \(self.accessibilityIdentifier ?? "") updateConstraints")
+            log("--- \(self.accessibilityIdentifier ?? "") updateConstraints")
         #endif
         if (!didSetupConstraints) {
             didSetupConstraints = true
             #if DEBUG
-                print("... \(self.accessibilityIdentifier ?? "") updateConstraints: setupConstraints.")
+                log("... \(self.accessibilityIdentifier ?? "") updateConstraints: setupConstraints.")
             #endif
             setupConstraints()
         }
         #if DEBUG
-            print("... \(self.accessibilityIdentifier ?? "") updateConstraints: modifyConstraints.")
+            log("... \(self.accessibilityIdentifier ?? "") updateConstraints: modifyConstraints.")
         #endif
         modifyConstraints()
 
         super.updateConstraints()
         #if DEBUG
-            print("^^^ \(self.accessibilityIdentifier ?? "") updateConstraints")
+            log("^^^ \(self.accessibilityIdentifier ?? "") updateConstraints")
         #endif
     }
 
@@ -72,22 +82,22 @@ open class BaseViewWithAutolayout: UIView {
             super.layoutSubviews()
 
             if autoPrintAll || autoPrintViewLayoutTrace {
-                print("")
-                print("...... \(self.accessibilityIdentifier ?? "") autoPrintViewLayoutTrace ......")
-                print(self.value(forKey: "_autolayoutTrace") ?? "")
-                print("")
+                log("")
+                log("...... \(self.accessibilityIdentifier ?? "") autoPrintViewLayoutTrace ......")
+                log(String(describing: self.value(forKey: "_autolayoutTrace")))
+                log("")
             }
             if autoPrintAll || autoPrintSelfViewConstraints {
-                print("")
-                print("...... \(self.accessibilityIdentifier ?? "") autoPrintSelfViewConstraints ......")
+                log("")
+                log("...... \(self.accessibilityIdentifier ?? "") autoPrintSelfViewConstraints ......")
                 self.autoPrintConstraints()
-                print("")
+                log("")
             }
             if autoPrintAll || autoPrintSuperViewConstraints {
-                print("")
-                print("...... \(self.accessibilityIdentifier ?? "") autoPrintSuperViewConstraints ......")
+                log("")
+                log("...... \(self.accessibilityIdentifier ?? "") autoPrintSuperViewConstraints ......")
                 self.superview?.autoPrintConstraints()
-                print("")
+                log("")
             }
         }
     #endif

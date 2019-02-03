@@ -1,16 +1,18 @@
 import UIKit
 
 public extension UIView {
+    @discardableResult
     public func autoLayout(_ accessibilityIdentifier: String? = nil) -> Self {
-        self.translatesAutoresizingMaskIntoConstraints = false;
+        self.translatesAutoresizingMaskIntoConstraints = false
         if let accessibilityIdentifier = accessibilityIdentifier {
             self.accessibilityIdentifier = accessibilityIdentifier
         }
         return self
     }
 
-    public func autoresizingMask(_ accessibilityIdentifier: String? = nil) -> Self {
-        self.translatesAutoresizingMaskIntoConstraints = true;
+    @discardableResult
+    public func autoResizingMask(_ accessibilityIdentifier: String? = nil) -> Self {
+        self.translatesAutoresizingMaskIntoConstraints = true
         if let accessibilityIdentifier = accessibilityIdentifier {
             self.accessibilityIdentifier = accessibilityIdentifier
         }

@@ -12,60 +12,70 @@ open class BaseViewControllerWithAutolayout: UIViewController {
     open var accessibilityIdentifier: String {
         return "BaseViewController"
     }
+
+    #if DEBUG
+        var debugOutputEnable = true
+        fileprivate func log(_ msg: String) {
+            if debugOutputEnable {
+                print(msg)
+            }
+        }
+    #endif
+
     open override func loadView() {
         #if DEBUG
-            print("--- \(self.accessibilityIdentifier) loadView")
+            log("--- \(self.accessibilityIdentifier) loadView")
         #endif
         super.loadView()
-        _ = self.view.autoresizingMask(accessibilityIdentifier)
+        _ = self.view.autoResizingMask(accessibilityIdentifier)
 
         #if DEBUG
-            print("... \(self.accessibilityIdentifier) loadView: setupAndComposeView")
+            log("... \(self.accessibilityIdentifier) loadView: setupAndComposeView")
         #endif
         setupAndComposeView()
 
         // bootstrap Auto Layout
         view.setNeedsUpdateConstraints()
         #if DEBUG
-            print("^^^ \(self.accessibilityIdentifier) loadView")
+            log("^^^ \(self.accessibilityIdentifier) loadView")
         #endif
     }
 
     #if DEBUG
         open override func viewDidLoad() {
-            print("--- \(self.accessibilityIdentifier) viewDidLoad")
+            log("--- \(self.accessibilityIdentifier) viewDidLoad")
             super.viewDidLoad()
-            print("^^^ \(self.accessibilityIdentifier) viewDidLoad")
+            log("^^^ \(self.accessibilityIdentifier) viewDidLoad, frame: \(self.view.frame), bounds: \(self.view.bounds)")
         }
 
         open override func viewWillAppear(_ animated: Bool) {
-            print("--- \(self.accessibilityIdentifier) viewWillAppear(\(animated))")
+            log("--- \(self.accessibilityIdentifier) viewWillAppear(\(animated))")
             super.viewWillAppear(animated)
-            print("^^^ \(self.accessibilityIdentifier) viewWillAppear(\(animated))")
+            log("^^^ \(self.accessibilityIdentifier) viewWillAppear(\(animated))")
         }
 
         open override func viewDidAppear(_ animated: Bool) {
-            print("--- \(self.accessibilityIdentifier) viewDidAppear(\(animated))")
+            log("--- \(self.accessibilityIdentifier) viewDidAppear(\(animated))")
             super.viewDidAppear(animated)
-            print("^^^ \(self.accessibilityIdentifier) viewDidAppear(\(animated))")
+            log("^^^ \(self.accessibilityIdentifier) viewDidAppear(\(animated))")
         }
 
         open override func viewWillDisappear(_ animated: Bool) {
-            print("--- \(self.accessibilityIdentifier) viewWillDisappear(\(animated))")
+            log("--- \(self.accessibilityIdentifier) viewWillDisappear(\(animated))")
             super.viewWillDisappear(animated)
-            print("^^^ \(self.accessibilityIdentifier) viewWillDisappear(\(animated))")
+            log("^^^ \(self.accessibilityIdentifier) viewWillDisappear(\(animated))")
         }
 
         open override func viewDidDisappear(_ animated: Bool) {
-            print("--- \(self.accessibilityIdentifier) viewDidDisappear(\(animated))")
+            log("--- \(self.accessibilityIdentifier) viewDidDisappear(\(animated))")
             super.viewDidDisappear(animated)
-            print("^^^ \(self.accessibilityIdentifier) viewDidDisappear(\(animated))")
+            log("^^^ \(self.accessibilityIdentifier) viewDidDisappear(\(animated))")
         }
 
         open override func viewWillLayoutSubviews() {
-            print("--- \(self.accessibilityIdentifier) viewWillLayoutSubviews")
+            log("--- \(self.accessibilityIdentifier) viewWillLayoutSubviews")
             super.viewWillLayoutSubviews()
-            print("^^^ \(self.accessibilityIdentifier) viewWillLayoutSubviews")
+            log("^^^ \(self.accessibilityIdentifier) viewWillLayoutSubviews")
         }
 
 
@@ -82,51 +92,51 @@ open class BaseViewControllerWithAutolayout: UIViewController {
             return false
         }
         open override func viewDidLayoutSubviews() {
-            print("--- \(self.accessibilityIdentifier) viewDidLayoutSubviews")
+            log("--- \(self.accessibilityIdentifier) viewDidLayoutSubviews")
             super.viewDidLayoutSubviews()
 
             if autoPrintAll || autoPrintViewLayoutTrace {
-                print("")
-                print("...... \(self.accessibilityIdentifier) autoPrintViewLayoutTrace ......")
-                print(self.view.value(forKey: "_autolayoutTrace") ?? "")
-                print("")
+                log("")
+                log("...... \(self.accessibilityIdentifier) autoPrintViewLayoutTrace ......")
+                log(String(describing: self.view.value(forKey: "_autolayoutTrace")))
+                log("")
             }
             if autoPrintAll || autoPrintSelfViewConstraints {
-                print("")
-                print("...... \(self.accessibilityIdentifier) autoPrintSelfViewConstraints ......")
+                log("")
+                log("...... \(self.accessibilityIdentifier) autoPrintSelfViewConstraints ......")
                 self.view.autoPrintConstraints()
-                print("")
+                log("")
             }
             if autoPrintAll || autoPrintSuperViewConstraints {
-                print("")
-                print("...... \(self.accessibilityIdentifier) autoPrintSuperViewConstraints ......")
+                log("")
+                log("...... \(self.accessibilityIdentifier) autoPrintSuperViewConstraints ......")
                 self.view.superview?.autoPrintConstraints()
-                print("")
+                log("")
             }
-            print("^^^ \(self.accessibilityIdentifier) viewDidLayoutSubviews")
+            log("^^^ \(self.accessibilityIdentifier) viewDidLayoutSubviews")
         }
     #endif
 
     fileprivate var didSetupConstraints = false
     open override func updateViewConstraints() {
         #if DEBUG
-            print("--- \(self.accessibilityIdentifier) updateViewConstraints")
+            log("--- \(self.accessibilityIdentifier) updateViewConstraints")
         #endif
         if (!didSetupConstraints) {
             didSetupConstraints = true
             #if DEBUG
-                print("... \(self.accessibilityIdentifier) updateViewConstraints: setupConstraints.")
+                log("... \(self.accessibilityIdentifier) updateViewConstraints: setupConstraints.")
             #endif
             setupConstraints()
         }
         #if DEBUG
-            print("... \(self.accessibilityIdentifier) updateViewConstraints: modifyConstraints.")
+            log("... \(self.accessibilityIdentifier) updateViewConstraints: modifyConstraints.")
         #endif
         modifyConstraints()
 
         super.updateViewConstraints()
         #if DEBUG
-            print("^^^ \(self.accessibilityIdentifier) updateViewConstraints")
+            log("^^^ \(self.accessibilityIdentifier) updateViewConstraints")
         #endif
     }
 
