@@ -39,8 +39,8 @@ class LeftTabMenuViewController: BaseViewControllerWithAutolayout {
             self.view.addSubview($0)
         }
         
-        sideMenuController?.cache(viewController: TabMenuNavigationController.wrapper(WorkWithOtherViewController()), with: "1")
-        sideMenuController?.cache(viewController: TabMenuNavigationController.wrapper(OtherExampleViewController()), with: "2")
+        tabMenuController?.cache(viewController: TabMenuNavigationController.wrapper(WorkWithOtherViewController()), with: "1")
+        tabMenuController?.cache(viewController: TabMenuNavigationController.wrapper(OtherExampleViewController()), with: "2")
     }
 
     override func setupConstraints() {
@@ -77,10 +77,10 @@ extension LeftTabMenuViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
 
-        sideMenuController?.setContentViewController(with: "\(row)", animated: self.sideMenuController?.configs.enableTransitionAnimation ?? true)
-        sideMenuController?.hideMenu()
+        tabMenuController?.setContentViewController(with: "\(row)", animated: self.tabMenuController?.configs.enableTransitionAnimation ?? true)
+        tabMenuController?.hideMenu()
         
-        print("[Example] View Controller Cache Identifier: " + sideMenuController!.currentCacheIdentifier()!)
+        print("[Example] View Controller Cache Identifier: " + tabMenuController!.currentCacheIdentifier()!)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

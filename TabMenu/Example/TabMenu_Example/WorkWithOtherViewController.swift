@@ -55,7 +55,7 @@ class WorkWithOtherViewController: BaseViewControllerWithAutolayout {
     }
 
     @objc func menuButtonTapped(_ sender: Any) {
-        self.sideMenuController?.openMenu()
+        self.tabMenuController?.openMenu()
     }
     
     @objc func pushButtonTapped(_ sender: Any) {

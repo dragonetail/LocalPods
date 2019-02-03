@@ -25,19 +25,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             window.backgroundColor = themeManager.theme.mainBackgroundColor
 
-            let sideMenuController = TabMenuController()
-            sideMenuController.configs.tabMenuWidth = 240
-            sideMenuController.configs.statusBarBehavior = .none
-            sideMenuController.configs.position = .above
-            sideMenuController.configs.direction = .left
-            sideMenuController.configs.enablePanGesture = true
-            sideMenuController.configs.supportedOrientations = .portrait
-            sideMenuController.configs.shouldRespectLanguageDirection = true
+            let tabMenuController = TabMenuController()
+            tabMenuController.configs.tabMenuWidth = 240
+            tabMenuController.configs.statusBarBehavior = .none
+            tabMenuController.configs.position = .above
+            tabMenuController.configs.direction = .left
+            tabMenuController.configs.enablePanGesture = false
+            tabMenuController.configs.supportedOrientations = .portrait
+            tabMenuController.configs.shouldRespectLanguageDirection = true
             
-            sideMenuController.contentViewController = TabMenuNavigationController.wrapper(PreferencesViewController())
-            sideMenuController.menuViewController = LeftTabMenuViewController()
+            tabMenuController.contentViewController = TabMenuNavigationController.wrapper(PreferencesViewController())
+            tabMenuController.menuViewController = LeftTabMenuViewController()
 
-            window.rootViewController = sideMenuController
+            window.rootViewController = tabMenuController
             window.makeKeyAndVisible()
         }
 

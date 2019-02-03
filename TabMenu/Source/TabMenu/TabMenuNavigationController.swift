@@ -10,6 +10,10 @@ import UIKit
 
 open class TabMenuNavigationController: UINavigationController {
 
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     open override var childForStatusBarHidden: UIViewController? {
         return self.topViewController
     }
@@ -23,4 +27,3 @@ open class TabMenuNavigationController: UINavigationController {
         return navigationController
     }
 }
-

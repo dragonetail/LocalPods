@@ -25,7 +25,7 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
             }
 
             if shouldCallSwitchingDelegate {
-                delegate?.sideMenuController?(self, willShow: contentViewController, animated: false)
+                delegate?.tabMenuController?(self, willShow: contentViewController, animated: false)
             }
 
             load(contentViewController, on: contentContainerView)
@@ -36,7 +36,7 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
             lazyCachedViewControllers[configs.defaultCacheKey] = contentViewController
 
             if shouldCallSwitchingDelegate {
-                delegate?.sideMenuController?(self, didShow: contentViewController, animated: false)
+                delegate?.tabMenuController?(self, didShow: contentViewController, animated: false)
             }
 
             setNeedsStatusBarAppearanceUpdate()
@@ -134,7 +134,7 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
         // 触发状态栏更新
         setNeedsStatusBarAppearanceUpdate()
 
-        self.view.addGestureRecognizer(panGestureRecognizer)
+        //self.view.addGestureRecognizer(panGestureRecognizer)
         self.view.addGestureRecognizer(edgePanGestureRecognizer)
         NotificationCenter.default
             .addObserver(self, selector: #selector(TabMenuController.appDidEnteredBackground),
@@ -188,13 +188,13 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
         menuViewController.beginAppearanceTransition(true, animated: true)
 
         if shouldCallDelegate {
-            visibility ? delegate?.sideMenuControllerWillOpenMenu?(self) : delegate?.sideMenuControllerWillHideMenu?(self)
+            visibility ? delegate?.tabMenuControllerWillOpenMenu?(self) : delegate?.tabMenuControllerWillHideMenu?(self)
         }
 
         UIApplication.shared.beginIgnoringInteractionEvents()
 
         let animationClosure = {
-            self.menuContainerView.frame = self.sideMenuFrame(visibility: visibility)
+            self.menuContainerView.frame = self.tabMenuFrame(visibility: visibility)
             self.contentContainerView.frame = self.contentFrame(visibility: visibility)
             if self.configs.animation.shouldAddShadowWhenOpenning {
                 self.contentContainerOverlay.alpha = visibility ? self.configs.animation.shadowAlpha : 0
@@ -206,7 +206,7 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
             self.menuViewController.endAppearanceTransition()
 
             if shouldCallDelegate {
-                visibility ? self.delegate?.sideMenuControllerDidOpenMenu?(self) : self.delegate?.sideMenuControllerDidHideMneu?(self)
+                visibility ? self.delegate?.tabMenuControllerDidOpenMenu?(self) : self.delegate?.tabMenuControllerDidHideMneu?(self)
             }
 
             if !visibility {
@@ -271,6 +271,7 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
     }
 
     @objc func handleEdgePanGesture(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+        print("...UIScreenEdgePanGestureRecognizer")
         if recognizer.state == .recognized {
             openMenu(animated: true)
         }
@@ -453,7 +454,7 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
         }
 
         if animated {
-            delegate?.sideMenuController?(self, willShow: viewController, animated: animated)
+            delegate?.tabMenuController?(self, willShow: viewController, animated: animated)
 
             addChild(viewController)
 
@@ -461,7 +462,7 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
             viewController.view.translatesAutoresizingMaskIntoConstraints = true
             viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
-            let animatorFromDelegate = delegate?.sideMenuController?(self,
+            let animatorFromDelegate = delegate?.tabMenuController?(self,
                                                                      animationControllerFrom: contentViewController,
                                                                      to: viewController)
 
@@ -481,7 +482,7 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
                 self.contentViewController = viewController
                 self.shouldCallSwitchingDelegate = true
 
-                self.delegate?.sideMenuController?(self, didShow: viewController, animated: animated)
+                self.delegate?.tabMenuController?(self, didShow: viewController, animated: animated)
 
                 viewController.didMove(toParent: self)
 
@@ -507,7 +508,7 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
         lazyCachedViewControllers[identifier] = nil
     }
 
-    private func sideMenuFrame(visibility: Bool) -> CGRect {
+    private func tabMenuFrame(visibility: Bool) -> CGRect {
         let position = configs.position
         switch position {
         case .above, .sideBySide:
@@ -554,7 +555,7 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
                 self.contentContainerView.frame = self.contentFrame(visibility: self.isMenuOpenning)
             }, completion: { (_) in
                 self.menuContainerView.isHidden = false
-                self.menuContainerView.frame = self.sideMenuFrame(visibility: self.isMenuOpenning)
+                self.menuContainerView.frame = self.tabMenuFrame(visibility: self.isMenuOpenning)
             })
         })
 

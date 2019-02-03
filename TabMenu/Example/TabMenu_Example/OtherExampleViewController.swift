@@ -33,7 +33,7 @@ class OtherExampleViewController: BaseViewControllerWithAutolayout {
     }
     
     @objc func menuButtonTapped(_ sender: Any) {
-        self.sideMenuController?.openMenu()
+        self.tabMenuController?.openMenu()
     }
     
     @objc func reloadButtonTapped(_ sender: Any) {
@@ -45,19 +45,19 @@ class OtherExampleViewController: BaseViewControllerWithAutolayout {
         
         UIApplication.shared.keyWindow?.backgroundColor = themeManager.theme.mainBackgroundColor
         
-        let sideMenuController = TabMenuController()
-        sideMenuController.configs.tabMenuWidth = 240
-        sideMenuController.configs.statusBarBehavior = .none
-        sideMenuController.configs.position = .above
-        sideMenuController.configs.direction = .left
-        sideMenuController.configs.enablePanGesture = true
-        sideMenuController.configs.supportedOrientations = .portrait
-        sideMenuController.configs.shouldRespectLanguageDirection = true
+        let tabMenuController = TabMenuController()
+        tabMenuController.configs.tabMenuWidth = 240
+        tabMenuController.configs.statusBarBehavior = .none
+        tabMenuController.configs.position = .above
+        tabMenuController.configs.direction = .left
+        tabMenuController.configs.enablePanGesture = true
+        tabMenuController.configs.supportedOrientations = .portrait
+        tabMenuController.configs.shouldRespectLanguageDirection = true
         
-        sideMenuController.contentViewController = TabMenuNavigationController.wrapper(PreferencesViewController()) 
-        sideMenuController.menuViewController = LeftTabMenuViewController()
+        tabMenuController.contentViewController = TabMenuNavigationController.wrapper(PreferencesViewController()) 
+        tabMenuController.menuViewController = LeftTabMenuViewController()
         
-        UIApplication.shared.keyWindow?.rootViewController = sideMenuController
+        UIApplication.shared.keyWindow?.rootViewController = tabMenuController
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

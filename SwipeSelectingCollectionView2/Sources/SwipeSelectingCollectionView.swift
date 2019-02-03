@@ -17,7 +17,7 @@ public class SwipeSelectingCollectionView: UICollectionView {
             action: #selector(SwipeSelectingCollectionView.didPanSelectingGestureRecognizerChange(gestureRecognizer:)))
         return gestureRecognizer
     } ()
-
+    
     lazy private var tapGestureRecognizer: UITapGestureRecognizer = {
         let tapGestureRecognizer = UITapGestureRecognizer(
             target: self,
@@ -25,21 +25,21 @@ public class SwipeSelectingCollectionView: UICollectionView {
         return tapGestureRecognizer
     } ()
 
-
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        gestureRecognizers?.append(panSelectingGestureRecognizer)
-        gestureRecognizers?.append(tapGestureRecognizer)
+        addGestureRecognizer(panSelectingGestureRecognizer)
+        addGestureRecognizer(tapGestureRecognizer)
         allowsMultipleSelection = true
     }
 
     override public init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
-        gestureRecognizers?.append(panSelectingGestureRecognizer)
-        gestureRecognizers?.append(tapGestureRecognizer)
+        addGestureRecognizer(panSelectingGestureRecognizer)
+        addGestureRecognizer(tapGestureRecognizer)
         allowsMultipleSelection = true
     }
 
+    
     @objc private func didPanSelectingGestureRecognizerChange(gestureRecognizer: UIPanGestureRecognizer) {
         let point = gestureRecognizer.location(in: self)
         switch gestureRecognizer.state {
@@ -176,6 +176,13 @@ public class SwipeSelectingCollectionView: UICollectionView {
                 delegate.collectionView?(self, didSelectItemAtByTapped: indexPath)
             }
         }
+    }
+    
+    override open func addGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer){
+        if let edgePanGestureRecognizer = gestureRecognizer as? UIScreenEdgePanGestureRecognizer {
+             panSelectingGestureRecognizer.require(toFail: edgePanGestureRecognizer)
+        }
+        super.addGestureRecognizer(gestureRecognizer)
     }
 }
 

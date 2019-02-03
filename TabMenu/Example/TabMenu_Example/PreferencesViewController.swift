@@ -20,8 +20,8 @@ class PreferencesViewController: BaseViewControllerWithAutolayout {
     }
 
     override func setupAndComposeView() {
-        guard let configs = self.sideMenuController?.configs else {
-            fatalError("没有找到sideMenuController。")
+        guard let configs = self.tabMenuController?.configs else {
+            fatalError("没有找到tabMenuController。")
         }
         self.configs = configs
 
@@ -144,19 +144,19 @@ class PreferencesViewController: BaseViewControllerWithAutolayout {
 
         UIApplication.shared.keyWindow?.backgroundColor = themeManager.theme.mainBackgroundColor
 
-        let sideMenuController = TabMenuController()
-        sideMenuController.configs.tabMenuWidth = 240
-        sideMenuController.configs.statusBarBehavior = .none
-        sideMenuController.configs.position = .above
-        sideMenuController.configs.direction = .left
-        sideMenuController.configs.enablePanGesture = true
-        sideMenuController.configs.supportedOrientations = .portrait
-        sideMenuController.configs.shouldRespectLanguageDirection = true
+        let tabMenuController = TabMenuController()
+        tabMenuController.configs.tabMenuWidth = 240
+        tabMenuController.configs.statusBarBehavior = .none
+        tabMenuController.configs.position = .above
+        tabMenuController.configs.direction = .left
+        tabMenuController.configs.enablePanGesture = true
+        tabMenuController.configs.supportedOrientations = .portrait
+        tabMenuController.configs.shouldRespectLanguageDirection = true
 
-        sideMenuController.contentViewController = TabMenuNavigationController.wrapper(PreferencesViewController())
-        sideMenuController.menuViewController = LeftTabMenuViewController()
+        tabMenuController.contentViewController = TabMenuNavigationController.wrapper(PreferencesViewController())
+        tabMenuController.menuViewController = LeftTabMenuViewController()
 
-        UIApplication.shared.keyWindow?.rootViewController = sideMenuController
+        UIApplication.shared.keyWindow?.rootViewController = tabMenuController
     }
 
 
@@ -167,7 +167,7 @@ class PreferencesViewController: BaseViewControllerWithAutolayout {
         self.view.addSubview(panGestureTitle)
 
         let panGestureControl = UISwitch().autoLayout("panGestureControl")
-        panGestureControl.setOn(self.sideMenuController?.configs.enablePanGesture ?? true, animated: false)
+        panGestureControl.setOn(self.tabMenuController?.configs.enablePanGesture ?? true, animated: false)
         self.view.addSubview(panGestureControl)
         panGestureControl.addTarget(self, action: #selector(changeEnablePanGesture(_:)), for: .valueChanged)
 
@@ -181,7 +181,7 @@ class PreferencesViewController: BaseViewControllerWithAutolayout {
         return panGestureTitle
     }
     @objc func changeEnablePanGesture(_ sender: UISwitch) {
-        self.sideMenuController?.configs.enablePanGesture = sender.isOn
+        self.tabMenuController?.configs.enablePanGesture = sender.isOn
     }
 
     fileprivate func rubberEffect(_ previos: UIView) -> UIView {
@@ -191,7 +191,7 @@ class PreferencesViewController: BaseViewControllerWithAutolayout {
         self.view.addSubview(rubberEffectTitle)
 
         let rubberEffectControl = UISwitch().autoLayout("rubberEffectControl")
-        rubberEffectControl.setOn(self.sideMenuController?.configs.enableRubberEffectWhenPanning ?? true, animated: false)
+        rubberEffectControl.setOn(self.tabMenuController?.configs.enableRubberEffectWhenPanning ?? true, animated: false)
         self.view.addSubview(rubberEffectControl)
         rubberEffectControl.addTarget(self, action: #selector(changeEnableRubberEffectWhenPanning(_:)), for: .valueChanged)
 
@@ -205,7 +205,7 @@ class PreferencesViewController: BaseViewControllerWithAutolayout {
         return rubberEffectTitle
     }
     @objc func changeEnableRubberEffectWhenPanning(_ sender: UISwitch) {
-        self.sideMenuController?.configs.enableRubberEffectWhenPanning = sender.isOn
+        self.tabMenuController?.configs.enableRubberEffectWhenPanning = sender.isOn
     }
 
     fileprivate func transitionAnimation(_ previos: UIView) -> UIView {
@@ -215,7 +215,7 @@ class PreferencesViewController: BaseViewControllerWithAutolayout {
         self.view.addSubview(transitionAnimationTitle)
 
         let transitionAnimationControl = UISwitch().autoLayout("transitionAnimationControl")
-        transitionAnimationControl.setOn(self.sideMenuController?.configs.enableTransitionAnimation ?? true, animated: false)
+        transitionAnimationControl.setOn(self.tabMenuController?.configs.enableTransitionAnimation ?? true, animated: false)
         self.view.addSubview(transitionAnimationControl)
         transitionAnimationControl.addTarget(self, action: #selector(changeEnableTransitionAnimation(_:)), for: .valueChanged)
 
@@ -229,7 +229,7 @@ class PreferencesViewController: BaseViewControllerWithAutolayout {
         return transitionAnimationTitle
     }
     @objc func changeEnableTransitionAnimation(_ sender: UISwitch) {
-        self.sideMenuController?.configs.enableTransitionAnimation = sender.isOn
+        self.tabMenuController?.configs.enableTransitionAnimation = sender.isOn
     }
 
     fileprivate func stepper(_ previos: UIView) -> UIView {
@@ -272,7 +272,7 @@ class PreferencesViewController: BaseViewControllerWithAutolayout {
     }
 
     @objc func menuButtonTapped(_ sender: Any) {
-        self.sideMenuController?.openMenu()
+        self.tabMenuController?.openMenu()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

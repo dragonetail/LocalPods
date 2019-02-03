@@ -49,31 +49,6 @@ extension TabMenuController {
         public var direction: MenuDirection = .left
         public var statusBarBehavior: StatusBarBehavior = .none
 
-//        public var tabMenuBackground: UIColor = UIColor(red: 0.03, green: 0.04, blue: 0.07, alpha: 1.00)
-//        public var tabMenuTextColor: UIColor = UIColor.white //External usage
-//        public var contentBackground: UIColor = UIColor(red: 0.08, green: 0.11, blue: 0.19, alpha: 1.00)
-//        public var contentTextColor: UIColor = UIColor.lobolly //External usage
-//        public var statusBarStyle: UIStatusBarStyle = .lightContent
-//
-//        public var theme: Theme = .dark {
-//            didSet {
-//                if theme == .dark {
-//                    tabMenuBackground = UIColor(red: 0.03, green: 0.04, blue: 0.07, alpha: 1.00)
-//                    tabMenuTextColor = .white
-//                    contentBackground = UIColor(red: 0.08, green: 0.11, blue: 0.19, alpha: 1.00)
-//                    contentTextColor = .lobolly
-//                    statusBarStyle = .lightContent
-//                } else {
-//                    tabMenuBackground = UIColor(red: 0.98, green: 0.97, blue: 0.96, alpha: 1.00)
-//                    tabMenuTextColor = .black
-//                    contentBackground = .white
-//                    contentTextColor = .black
-//                    statusBarStyle = .default
-//                }
-//            }
-//        }
-
-
         //是否需要遵循本地化语言的UI方向
         public var shouldRespectLanguageDirection = true
 
