@@ -267,11 +267,12 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
     }
 
     @objc private func handleTapGestureOnContentContainerOverlay(_ tap: UITapGestureRecognizer) {
+        print("...   >>> ContentContainerOverlay tapped")
         hideMenu()
     }
 
     @objc func handleEdgePanGesture(_ recognizer: UIScreenEdgePanGestureRecognizer) {
-        print("...UIScreenEdgePanGestureRecognizer")
+        print("...   >>> UIScreenEdgePanGestureRecognizer")
         if recognizer.state == .recognized {
             openMenu(animated: true)
         }
@@ -561,6 +562,14 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
 
         super.viewWillTransition(to: size, with: coordinator)
     }
+    
+    open override func viewDidLayoutSubviews(){
+        super.viewDidLayoutSubviews()
+        
+        //规避菜单内部控件激发本Controller重新Layout的情况（例如内部使用UITableView，在Reload内容的时候就会触发上层Layout动作导致菜单位置重置显示在窗口之外）
+        self.menuContainerView.frame = self.tabMenuFrame(visibility: self.isMenuOpenning)
+    }
+    
 }
 
 extension TabMenuController: UIGestureRecognizerDelegate {
