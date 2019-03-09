@@ -9,7 +9,8 @@
 import UIKit
 
 open class TabMenuNavigationController: UINavigationController {
-
+    open var rootViewController: UIViewController?
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -24,6 +25,7 @@ open class TabMenuNavigationController: UINavigationController {
 
     public static func wrapper(_ viewController: UIViewController) -> UINavigationController {
         let navigationController = TabMenuNavigationController(rootViewController: viewController)
+        navigationController.rootViewController = viewController
         return navigationController
     }
 }

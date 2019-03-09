@@ -427,22 +427,38 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
 
 
     /// 缓存UIViewController
-    /// 缓存UIViewController
     open func cache(viewController: UIViewController, with identifier: String) {
         lazyCachedViewControllers[identifier] = viewController
+    }
+    
+    open func cache(_ identifier: String)-> UIViewController? {
+        if let lazyCachedViewController = lazyCachedViewControllers[identifier] {
+            if let tabMenuNavigationController = lazyCachedViewController as? TabMenuNavigationController {
+                return tabMenuNavigationController.rootViewController
+            }else{
+                return lazyCachedViewController
+            }
+        }else {
+            return nil
+        }
     }
 
     /// 通过缓存UIViewController，切换内容
     open func setContentViewController(with identifier: String,
-                                       animated: Bool = false,
+                                       animated: Bool? = nil,
                                        completion: (() -> Void)? = nil) {
+        let animated = animated ?? configs.enableTransitionAnimation
+        
         if let viewController = lazyCachedViewControllers[identifier] {
-            setContentViewController(to: viewController, animated: animated, completion: completion)
-        } else if let viewController = lazyCachedViewControllers[configs.defaultCacheKey] {
             setContentViewController(to: viewController, animated: animated, completion: completion)
         } else {
             fatalError("[TabMenu] \(identifier)关联的UIViewController没有找到。")
         }
+    }
+
+    open func setBachToMainContentViewController(animated: Bool? = nil,
+                                       completion: (() -> Void)? = nil) {
+        self.setContentViewController(with: configs.defaultCacheKey, animated: animated, completion: completion)
     }
 
     /// 直接切换UIViewController
