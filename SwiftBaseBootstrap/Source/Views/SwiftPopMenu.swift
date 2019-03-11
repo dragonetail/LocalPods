@@ -9,10 +9,6 @@
 import Foundation
 import UIKit
 
-public protocol SwiftPopMenuDelegate {
-    func didSelected(popMenu: SwiftPopMenu, with index: Int)
-}
-
 public class SwiftPopMenuConfig {
     //整体位置偏移
     var yMargin: CGFloat = -10
@@ -54,13 +50,27 @@ public class SwiftPopMenuConfig {
     public var contentBackgroundColor: UIColor = UIColor.black.withAlphaComponent(0.2)
 }
 
+@objc(PopMenuItem)
+public class PopMenuItem: NSObject {
+    public var icon: String
+    public var title: String
+    public var target: Any?
+    public var action: Selector?
+
+    public init(icon: String, title: String, target: Any? = nil, action: Selector? = nil) {
+        self.icon = icon
+        self.title = title
+        self.target = target
+        self.action = action
+    }
+}
+
 open class SwiftPopMenu: UIView {
     private static let cellID: String = "SwiftPopMenuCellID"
 
     public var config: SwiftPopMenuConfig = SwiftPopMenuConfig()
 
-    public var delegate: SwiftPopMenuDelegate?
-    public var popMenuItems: [(icon: String, title: String)]?
+    public var popMenuItems: [PopMenuItem]?
 
     private var initialized: Bool = false
 
@@ -122,11 +132,15 @@ open class SwiftPopMenu: UIView {
 
     public func show(_ sourceViewObject: AnyObject? = nil) {
         initViews()
-        
+
         let sourceView: UIView? = sourceViewAsUIView(sourceViewObject)
         self.absoluteSourceFrame = computeAbsoluteSourceFrame(sourceView)
         self.setNeedsLayout()
 
+        tableView.visibleCells.forEach { (cell) in
+            cell.setSelected(false, animated: false)
+        }
+        
         UIApplication.shared.keyWindow?.addSubview(self)
     }
 
@@ -324,8 +338,14 @@ extension SwiftPopMenu: UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if self.delegate != nil {
-            self.delegate?.didSelected(popMenu: self, with: indexPath.row)
+        self.dismiss()
+        
+        let model = popMenuItems![indexPath.row]
+        guard let target = model.target,
+            let action = model.action else {
+                return
         }
+
+        (target as AnyObject).performSelector(onMainThread: action, with: model, waitUntilDone: true)
     }
 }
