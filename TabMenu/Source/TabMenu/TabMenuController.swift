@@ -33,13 +33,19 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
             contentContainerView.sendSubviewToBack(contentViewController.view)
             unload(oldValue)
 
-            lazyCachedViewControllers[configs.defaultCacheKey] = contentViewController
+            lazyCachedViewControllers[defaultViewControllerCacheKey] = contentViewController
 
             if shouldCallSwitchingDelegate {
                 delegate?.tabMenuController?(self, didShow: contentViewController, animated: false)
             }
 
             setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+
+    open var defaultViewControllerCacheKey: String {
+        get {
+            return configs.defaultCacheKey
         }
     }
 
@@ -87,6 +93,10 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
         let tapToHideGesture = UITapGestureRecognizer()
         tapToHideGesture.addTarget(self, action: #selector(TabMenuController.handleTapGestureOnContentContainerOverlay(_:)))
         contentContainerOverlay.addGestureRecognizer(tapToHideGesture)
+
+        let swipeGestureLeft = UISwipeGestureRecognizer.init(target: self, action:#selector(TabMenuController.handleSwipeGestureOnContentContainerOverlay(_:)))
+        swipeGestureLeft.direction = .left;
+        contentContainerOverlay.addGestureRecognizer(swipeGestureLeft)
 
         return contentContainerOverlay
     }()
@@ -194,11 +204,15 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
         UIApplication.shared.beginIgnoringInteractionEvents()
 
         let animationClosure = {
+            self.isMenuOpenning = visibility
             self.menuContainerView.frame = self.tabMenuFrame(visibility: visibility)
             self.contentContainerView.frame = self.contentFrame(visibility: visibility)
             if self.configs.animation.shouldAddShadowWhenOpenning {
                 self.contentContainerOverlay.alpha = visibility ? self.configs.animation.shadowAlpha : 0
                 self.contentContainerOverlay.isHidden = !visibility
+                if visibility {
+                    self.contentContainerView.bringSubviewToFront(self.contentContainerOverlay)
+                }
             }
         }
 
@@ -209,19 +223,9 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
                 visibility ? self.delegate?.tabMenuControllerDidOpenMenu?(self) : self.delegate?.tabMenuControllerDidHideMneu?(self)
             }
 
-            if !visibility {
-                self.contentContainerOverlay.isHidden = true
-                //self.contentContainerOverlay.removeFromSuperview()
-            } else {
-                self.contentContainerOverlay.isHidden = false
-                //self.contentContainerView.insertSubview(self.contentContainerOverlay, aboveSubview: self.contentViewController.view)
-            }
-
             completion?(true)
 
             UIApplication.shared.endIgnoringInteractionEvents()
-
-            self.isMenuOpenning = visibility
         }
 
         if animated {
@@ -267,7 +271,9 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
     }
 
     @objc private func handleTapGestureOnContentContainerOverlay(_ tap: UITapGestureRecognizer) {
-        print("...   >>> ContentContainerOverlay tapped")
+        hideMenu()
+    }
+    @objc private func handleSwipeGestureOnContentContainerOverlay(_ sender: UISwipeGestureRecognizer) {
         hideMenu()
     }
 
@@ -430,15 +436,15 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
     open func cache(viewController: UIViewController, with identifier: String) {
         lazyCachedViewControllers[identifier] = viewController
     }
-    
-    open func cache(_ identifier: String)-> UIViewController? {
+
+    open func cache(_ identifier: String) -> UIViewController? {
         if let lazyCachedViewController = lazyCachedViewControllers[identifier] {
             if let tabMenuNavigationController = lazyCachedViewController as? TabMenuNavigationController {
                 return tabMenuNavigationController.rootViewController
-            }else{
+            } else {
                 return lazyCachedViewController
             }
-        }else {
+        } else {
             return nil
         }
     }
@@ -448,7 +454,7 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
                                        animated: Bool? = nil,
                                        completion: (() -> Void)? = nil) {
         let animated = animated ?? configs.enableTransitionAnimation
-        
+
         if let viewController = lazyCachedViewControllers[identifier] {
             setContentViewController(to: viewController, animated: animated, completion: completion)
         } else {
@@ -457,8 +463,8 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
     }
 
     open func setBachToMainContentViewController(animated: Bool? = nil,
-                                       completion: (() -> Void)? = nil) {
-        self.setContentViewController(with: configs.defaultCacheKey, animated: animated, completion: completion)
+                                                 completion: (() -> Void)? = nil) {
+        self.setContentViewController(with: defaultViewControllerCacheKey, animated: animated, completion: completion)
     }
 
     /// 直接切换UIViewController
@@ -480,13 +486,13 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
             viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
             let animatorFromDelegate = delegate?.tabMenuController?(self,
-                                                                     animationControllerFrom: contentViewController,
-                                                                     to: viewController)
+                                                                    animationControllerFrom: contentViewController,
+                                                                    to: viewController)
 
             let animator = animatorFromDelegate ?? BasicTransitionAnimator()
 
             let transitionContext = TabMenuController.TransitionContext(with: contentViewController,
-                                                                         toViewController: viewController)
+                                                                        toViewController: viewController)
             transitionContext.isAnimated = true
             transitionContext.isInteractive = false
             transitionContext.completion = { finish in
@@ -578,14 +584,14 @@ open class TabMenuController: BaseViewControllerWithAutolayout {
 
         super.viewWillTransition(to: size, with: coordinator)
     }
-    
-    open override func viewDidLayoutSubviews(){
+
+    open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+
         //规避菜单内部控件激发本Controller重新Layout的情况（例如内部使用UITableView，在Reload内容的时候就会触发上层Layout动作导致菜单位置重置显示在窗口之外）
         self.menuContainerView.frame = self.tabMenuFrame(visibility: self.isMenuOpenning)
     }
-    
+
 }
 
 extension TabMenuController: UIGestureRecognizerDelegate {
