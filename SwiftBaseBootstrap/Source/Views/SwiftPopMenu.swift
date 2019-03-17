@@ -131,20 +131,12 @@ open class SwiftPopMenu: UIView {
     }
 
     public func show(_ sourceViewObject: AnyObject? = nil) {
-        initViews()
-
-        let sourceView: UIView? = sourceViewAsUIView(sourceViewObject)
-        self.absoluteSourceFrame = computeAbsoluteSourceFrame(sourceView)
-        self.setNeedsLayout()
-
-        tableView.visibleCells.forEach { (cell) in
-            cell.setSelected(false, animated: false)
-        }
+        initViews(sourceViewObject)
         
-        UIApplication.shared.keyWindow?.addSubview(self)
+        self.isHidden = false
     }
 
-    func initViews() {
+    func initViews(_ sourceViewObject: AnyObject? = nil) {
         if (initialized) {
             return
         }
@@ -157,13 +149,24 @@ open class SwiftPopMenu: UIView {
 
         //箭头
         self.addSubview(arrowView)
+        self.addSubview(self.tableView)
 
-        UIView.animate(withDuration: 0.3) {
-            self.addSubview(self.tableView)
-        }
+        let sourceView: UIView? = sourceViewAsUIView(sourceViewObject)
+        self.absoluteSourceFrame = computeAbsoluteSourceFrame(sourceView)
+        self.setNeedsLayout()
+
+        //        tableView.visibleCells.forEach { (cell) in
+        //            cell.setSelected(false, animated: false)
+        //        }
+
+        UIApplication.shared.keyWindow?.addSubview(self)
     }
 
     public func dismiss() {
+        self.isHidden = true
+    }
+
+    deinit {
         self.removeFromSuperview()
     }
 
@@ -338,8 +341,11 @@ extension SwiftPopMenu: UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SwiftPopMenu.cellID) as! SwiftPopMenuCell
+        cell.setSelected(false, animated: false)
+
         self.dismiss()
-        
+
         let model = popMenuItems![indexPath.row]
         guard let target = model.target,
             let action = model.action else {
